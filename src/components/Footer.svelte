@@ -10,7 +10,6 @@
       request
         .get(` https://cache.b-coding.io/${base64URL}`)
         .then((response) => {
-          console.log(response.body);
           rs(response.body);
         })
         .catch((err) => rj(err));

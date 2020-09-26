@@ -7,10 +7,11 @@
 
   let data = { location: $location };
    export let slug='';
-  const getPage = async (targetAttr, slug='') =>
+   export let posttype='pages';
+  const getPage = async (targetAttr, slug='',posttype='pages') =>
     new Promise((rs, rj) => {
       const base64URL = btoa(
-        `http://cms.sfz-rottenburg.de/wp-json/wp/v2/pages?slug=${slug}`
+        `http://cms.sfz-rottenburg.de/wp-json/wp/v2/${posttype}?slug=${slug}`
       );
       request
         .get(`https://cache.b-coding.io/${base64URL}`)
@@ -22,7 +23,7 @@
     });
 </script>
 {#await Promise.all([
-    getPage("pagedata",slug|| $location.replace(/^\/+/, "") || "home"),
+    getPage("pagedata",slug|| $location.replace(/^\/+/, "") || "home",posttype),
     getPage("headerfooterdata", "_config"),
   ])}
   <Header {data} />
