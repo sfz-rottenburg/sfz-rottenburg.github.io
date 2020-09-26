@@ -10,6 +10,8 @@
   import PageSchulleitung from "../templates/page_schulleitung.svelte";
   import PageKlassen from  "../templates/page_klassen.svelte";
   import PageDefault from "../templates/page_default.svelte";
+  import PageJas from "../templates/page_jas.svelte";
+  import PageKontakt from "../templates/page_kontakt.svelte";
   export let params = {};
 </script>
 
@@ -40,6 +42,12 @@
   {/if}
   {#if get(data, 'pagedata.acf.template', '') === 'page_default'}
     <PageDefault {data} slug={params.slug} />
+  {/if}
+  {#if get(data, 'pagedata.acf.template', '') === 'page_jas'}
+    <PageJas {data} slug={params.slug} />
+  {/if}
+  {#if get(data, 'pagedata.acf.template', '') === 'page_kontakt'}
+    <PageKontakt {data} slug={params.slug} />
   {/if}
 
 </Data>
