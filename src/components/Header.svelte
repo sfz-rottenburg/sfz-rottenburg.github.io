@@ -3,6 +3,7 @@
   import { link } from "svelte-spa-router";
   import { get } from "lodash";
   import { getImageUrl } from "../utils";
+  import { afterUpdate } from "svelte";
   const getMenu = async (menu) =>
     new Promise((rs, rj) => {
       const base64URL = btoa(
@@ -23,6 +24,13 @@
   import { getPageTitel, getLink } from "../utils";
   export let data;
   let pageTitle = getPageTitel(data.headerfooterdata, data.pagedata);
+  afterUpdate(() => {
+  window.$(".button-collapse").sideNav({
+      menuWidth: 300, // Default is 240
+      edge: 'left', // Choose the horizontal origin
+      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    });
+  });
 </script>
 
 <svelte:head>

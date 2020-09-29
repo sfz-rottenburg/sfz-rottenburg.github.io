@@ -1,7 +1,9 @@
 $(document).ready(function () {
+    /*
     if ($('.slider').length > 0) {
       $('.slider').slider({ indicators: false, interval: 8000, transition: 800, height: 400 });
     }
+    */
     $('select').material_select();
     if ($('.collapsible').length > 9) {
       $('.collapsible').collapsible({});

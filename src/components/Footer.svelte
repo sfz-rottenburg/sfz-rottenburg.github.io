@@ -118,7 +118,4 @@
       </div>
     </div>
   </div>
-  <script src="/custom.js">
-
-  </script>
 </footer>

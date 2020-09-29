@@ -3,7 +3,7 @@
   import { link } from "svelte-spa-router";
   import { get } from "lodash";
   import { getImageUrl, getLink } from "../utils";
-  import { DataTransferItem } from "lodash/_freeGlobal";
+  import { afterUpdate } from "svelte";
   const getNews = async () =>
     new Promise((rs, rj) => {
       const base64URL = btoa(
@@ -21,6 +21,18 @@
 
 <script>
   import Data from "../components/Data.svelte";
+  const jQuery=window.$;
+  afterUpdate(() => {
+    console.log('+++++++',window.$(".slider").length,window.$(".slider").slider);
+    if (window.$(".slider").length > 0) {
+      window.$(".slider").slider({
+        indicators: false,
+        interval: 8000,
+        transition: 800,
+        height: 400,
+      });
+    }
+  });
 </script>
 
 <Data let:data>
@@ -98,7 +110,7 @@
                   <a href={getLink(item.link)} use:link>
                     <h4>{item.titel}</h4>
                   </a>
-                  {item.text}
+                  {@html item.text}
                   <div class="bc_link">
                     <a href={getLink(item.link)} use:link>
                       {item.link_beschriftung}
