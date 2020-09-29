@@ -20,12 +20,14 @@
 </script>
 
 <script>
-  import Data from "../components/Data.svelte";
+  import Data from "../components/Data.svelte"; 
+  import Slider from "../components/Slider.svelte"; 
+  /*
   const jQuery=window.$;
   afterUpdate(() => {
     console.log('+++++++',window.$(".slider").length,window.$(".slider").slider);
     if (window.$(".slider").length > 0) {
-      window.$(".slider").slider({
+      window.$(".slides").slider({
         indicators: false,
         interval: 8000,
         transition: 800,
@@ -33,6 +35,7 @@
       });
     }
   });
+  */
 </script>
 
 <Data let:data>
@@ -41,19 +44,9 @@
   S L I D E R
   -->
     <div id="bc_slider_wrapper_fullwidth " class="hide-on-small-only">
-      <div class="slider">
-        <ul class="slides">
-          {#if get(data, 'pagedata.acf.slider', false)}
-            {#each get(data, 'pagedata.acf.slider', []) as item}
-              <li>
-                <img
-                  alt=""
-                  src={getImageUrl(item.bild, 'c_scale,w_2000,h_400')} />
-              </li>
-            {/each}
+      {#if get(data, 'pagedata.acf.slider', false)}
+            <Slider slideimages={get(data, 'pagedata.acf.slider', [])}/>
           {/if}
-        </ul>
-      </div>
     </div>
     <!--
   B U T T O N L E I S T E
