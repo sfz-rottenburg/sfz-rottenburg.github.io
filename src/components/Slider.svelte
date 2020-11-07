@@ -1,7 +1,6 @@
 <script>
     export let slideimages;
     import { getImageUrl, getLink } from "../utils";
-    console.log(slideimages);
     let currentSlide=0;
     setInterval(()=>{
         if(currentSlide<slideimages.length-1){

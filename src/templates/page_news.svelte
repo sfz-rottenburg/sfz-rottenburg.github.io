@@ -23,7 +23,7 @@
 <div id="page-{slug}" class="bc_subpage">
   <div
     id="bc_sub_headerimg"
-    style={get(data, 'pagedata.acf.hauptbild',get(data, 'headerfooterdata.acf.ersatzbild')) ? `background:url(${getImageUrl(get(data, 'pagedata.acf.hauptbild'), 'c_scale,w_2000,h_500')})center center no-repeat; background-size:cover` : ''}>
+    style={get(data, 'pagedata.acf.hauptbild',get(data, 'headerfooterdata.acf.ersatzbild')) ? `background:url(${getImageUrl(get(data, 'pagedata.acf.hauptbild'), 'c_scale,w_2000,h_500')})center center no-repeat; background-size:cover;` : ''}>
     <div class="container">
       <div class="row">
         <div class="col s12">
@@ -41,10 +41,9 @@
         <div class="row bc_aktuelles_item">
         {#if get(data, 'pagedata.acf.bild')}
         <div class="col s12">
-              <div class="bc_img_bordered {get(data, 'pagedata.acf.farbe')}">
-                <img
-                  alt=""
-                  src={getImageUrl(get(data, 'pagedata.acf.bild'), 'c_scale,w_950,h_300')} />
+              <div class="bc_img_bordered {get(data, 'pagedata.acf.farbe')}"
+              style={get(data, 'pagedata.acf.bild') ? `background:url(${getImageUrl(get(data, 'pagedata.acf.bild'), 'c_scale,w_950,h_300')})center center no-repeat; background-size:cover; height:20vh;` : ''}
+              >
               </div>
             </div>
         {/if}
