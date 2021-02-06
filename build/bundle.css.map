@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "Slider.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n    export let slideimages;\n    import { getImageUrl, getLink } from \"../utils\";\n    let currentSlide=0;\n    setInterval(()=>{\n        if(currentSlide<slideimages.length-1){\n            currentSlide+=1;\n        } else{\n            currentSlide=0;\n        }\n    },8000);\n</script>\n\n<style>\n    .bcslides{\n        height:400px;\n        width:100%;\n        position:relative;\n    }\n    .slide{\n        height:400px;\n        width:100%;\n        position:absolute;\n        top:0;\n        left:0;\n         -webkit-opacity: 0;\n    -moz-opacity: 0;\n    opacity: 0;\n    -webkit-transition: all 2s ease;\n    -moz-transition: all 2s ease;\n    -ms-transition: all 2s ease;\n    -o-transition: all 2s ease;\n    transition: all 2s ease;\n    }\n    .slide.active{\n        -webkit-opacity: 1;\n    -moz-opacity: 1;\n    opacity: 1;\n    -webkit-transition: all 2s ease;\n    -moz-transition: all 2s ease;\n    -ms-transition: all 2s ease;\n    -o-transition: all 2s ease;\n    transition: all 2s ease;\n    }\n</style>\n\n<div class=\"bcslides\">\n    {#each slideimages as item, idx}\n              <div class=\" slide {currentSlide == idx?'active':0}\" style=\"background:url({getImageUrl(item.bild, 'c_fit,w_2000,h_400')})\n                      left center no-repeat;background-size:cover;\" />\n            {/each}\n</div>"
+  ],
+  "names": [],
+  "mappings": "AAcI,wBAAS,CAAC,AACN,OAAO,KAAK,CACZ,MAAM,IAAI,CACV,SAAS,QAAQ,AACrB,CAAC,AACD,qBAAM,CAAC,AACH,OAAO,KAAK,CACZ,MAAM,IAAI,CACV,SAAS,QAAQ,CACjB,IAAI,CAAC,CACL,KAAK,CAAC,CACL,eAAe,CAAE,CAAC,CACvB,YAAY,CAAE,CAAC,CACf,OAAO,CAAE,CAAC,CACV,kBAAkB,CAAE,GAAG,CAAC,EAAE,CAAC,IAAI,CAC/B,eAAe,CAAE,GAAG,CAAC,EAAE,CAAC,IAAI,CAC5B,cAAc,CAAE,GAAG,CAAC,EAAE,CAAC,IAAI,CAC3B,aAAa,CAAE,GAAG,CAAC,EAAE,CAAC,IAAI,CAC1B,UAAU,CAAE,GAAG,CAAC,EAAE,CAAC,IAAI,AACvB,CAAC,AACD,MAAM,sBAAO,CAAC,AACV,eAAe,CAAE,CAAC,CACtB,YAAY,CAAE,CAAC,CACf,OAAO,CAAE,CAAC,CACV,kBAAkB,CAAE,GAAG,CAAC,EAAE,CAAC,IAAI,CAC/B,eAAe,CAAE,GAAG,CAAC,EAAE,CAAC,IAAI,CAC5B,cAAc,CAAE,GAAG,CAAC,EAAE,CAAC,IAAI,CAC3B,aAAa,CAAE,GAAG,CAAC,EAAE,CAAC,IAAI,CAC1B,UAAU,CAAE,GAAG,CAAC,EAAE,CAAC,IAAI,AACvB,CAAC"
+}

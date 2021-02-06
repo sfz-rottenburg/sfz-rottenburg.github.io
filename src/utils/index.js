@@ -21,3 +21,7 @@ export const getLink=(url='')=>{
 export const getImageUrl=(url='',options='')=>`https://res.cloudinary.com/b-coding/image/fetch/${options}/${url}`;
 
 export const nl2br = (txt)=> txt.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
+export const prepareHtmlContent=(content)=>{
+  return content.replace(/http:\/\/cms.sfz-rottenburg.de\/wp-content\/uploads/g, 'https://res.cloudinary.com/b-coding/image/fetch/http://cms.sfz-rottenburg.de/wp-content/uploads');
+}

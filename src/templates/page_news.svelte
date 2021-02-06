@@ -2,7 +2,7 @@
   import request from "superagent";
   import { link } from "svelte-spa-router";
   import { get } from "lodash";
-  import { getImageUrl, getLink } from "../utils";
+  import { getImageUrl, getLink,prepareHtmlContent } from "../utils";
   export let data;
   export let slug;
   const getNews = async () =>
@@ -20,7 +20,7 @@
   let promiseNews = getNews();
 </script>
 
-<div id="page-{slug}" class="bc_subpage">
+<div id="page-{slug}" class="bc_subpage news">
   <div
     id="bc_sub_headerimg"
     style={get(data, 'pagedata.acf.hauptbild',get(data, 'headerfooterdata.acf.ersatzbild')) ? `background:url(${getImageUrl(get(data, 'pagedata.acf.hauptbild'), 'c_scale,w_2000,h_500')})center center no-repeat; background-size:cover;` : ''}>
@@ -51,7 +51,7 @@
         </div>
         <div class="row">
           <div class="col s12">
-             {@html get(data, 'pagedata.content.rendered', '')}
+             {@html prepareHtmlContent(get(data, 'pagedata.content.rendered', ''))}
           </div>
         </div>
         <div class="row">
