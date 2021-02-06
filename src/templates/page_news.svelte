@@ -8,7 +8,7 @@
   const getNews = async () =>
     new Promise((rs, rj) => {
       const base64URL = btoa(
-        `http://cms.sfz-rottenburg.de/wp-json/wp/v2/posts?per_page=6`
+        `http://cms.sfz-rottenburg.de/wp-json/wp/v2/posts?categories=16&per_page=20`
       );
       request
         .get(` https://cache.b-coding.io/${base64URL}`)
