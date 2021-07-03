@@ -22,7 +22,7 @@
 <script>
   import Data from "../components/Data.svelte"; 
   import Slider from "../components/Slider.svelte"; 
-  /*
+  
   const jQuery=window.$;
   afterUpdate(() => {
     console.log('+++++++',window.$(".slider").length,window.$(".slider").slider);
@@ -35,7 +35,7 @@
       });
     }
   });
-  */
+  
 </script>
 
 <Data let:data>

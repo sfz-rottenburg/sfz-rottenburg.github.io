@@ -389,6 +389,44 @@ img{
     margin:0px 20px 20px 0px;
   }
 }
+
+#imgfooter{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.mb{
+  cursor:pointer;
+  &.inactive{
+    width:33%;
+    position:relative;
+    padding: 0.25rem;
+    .bc_footer_smallimg{
+      width:90px;
+      height:90px;
+      max-width:100%;
+    }
+  }
+  &.active{
+    padding:0;
+    position:fixed;
+    top:0;
+    left:0;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    z-index:1000;
+    background:rgba(255,255,255,0.7);
+    width:100vw;
+    height:100vh;
+    .bc_footer_smallimg{
+      width:90vw;
+      height:90vh;
+    }
+  }
+}
+
 .bc_padright{
   @media screen and (max-width: 600px) {
     padding-right:0.75rem !important;

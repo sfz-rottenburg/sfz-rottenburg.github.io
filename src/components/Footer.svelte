@@ -19,7 +19,18 @@
 
 <script>
   import { getLink, getImageUrl, nl2br } from "../utils";
+  import { afterUpdate } from "svelte";
   export let data;
+  afterUpdate(() => {
+    window.$('.mb.inactive').click(function() {
+      window.$( this ).addClass('active');
+      window.$( this ).removeClass('inactive');
+      window.$('.mb.active,.mb.active *').click(function() {
+      window.$('.mb.active' ).removeClass('active').addClass('inactive');
+    });
+    });
+    
+  });
 </script>
 
 <footer id="bc_footer">
@@ -85,6 +96,17 @@
         <div class="row">
           <div class="col s12">
             {@html get(data, 'headerfooterdata.acf.footer_4_text', ' ')}
+            <div id="imgfooter">
+            {#each get(data, 'headerfooterdata.acf.footer_4_bildergalerie', []) as item}
+                  <div class="mb inactive">
+                    <div class="bc_footer_smallimg" style="background:url({getImageUrl(get(item, 'bild', ''), 'c_fit,w_1200,h_1200')})center center no-repeat;background-size:cover"></div>
+                    </div>
+                    <!--<img
+                  class="materialboxed"
+                  src={getImageUrl(get(item, 'bild', ''), 'c_fit,w_1200,h_1200')} />-->
+                  
+                {/each}
+            </div>
           </div>
         </div>
       </div>
