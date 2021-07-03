@@ -4,10 +4,10 @@
   import { get } from "lodash";
   import { getImageUrl, getLink } from "../utils";
   import { afterUpdate } from "svelte";
-  const getNews = async (cat) =>
+  const getNews = async () =>
     new Promise((rs, rj) => {
       const base64URL = btoa(
-        `http://cms.sfz-rottenburg.de/wp-json/wp/v2/posts?categories=${cat}&per_page=6`
+        `http://cms.sfz-rottenburg.de/wp-json/wp/v2/posts?categories=8&per_page=6`
       );
       request
         .get(` https://cache.b-coding.io/${base64URL}`)
@@ -16,13 +16,13 @@
         })
         .catch((err) => rj(err));
     });
-  let promiseNews = getNews(8);
+  let promiseNews = getNews();
 </script>
 
 <script>
   import Data from "../components/Data.svelte"; 
   import Slider from "../components/Slider.svelte"; 
-  /*
+  
   const jQuery=window.$;
   afterUpdate(() => {
     console.log('+++++++',window.$(".slider").length,window.$(".slider").slider);
@@ -35,7 +35,7 @@
       });
     }
   });
-  */
+  
 </script>
 
 <Data let:data>
@@ -69,118 +69,6 @@
                   </div>
                 </a>
               {/each}
-            {/if}
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--
-  Wichtige Informationen
-  -->
-    <div class="container" id="bc_home_teaser_1">
-      <div class="row">
-        <div class="col s12">
-          <h2 class="left-align">
-            {@html get(data, 'pagedata.acf.titel_wichtig', '&nbsp')}
-          </h2>
-          <h3 class="left-align">
-            {@html get(data, 'pagedata.acf.untertitel_wichtig', '&nbsp')}
-          </h3>
-          <div class="bc_minihdiv sfz_gruen" />
-        </div>
-      </div>
-      <div class="row">
-        {#await getNews(8) then news}
-          {#each news as item}
-            <div class="col s12 m6 l4">
-              <div
-                class="card-panel {get(item, 'acf.farbe', '')} bc_samesize news">
-                <div
-                  style={get(item, 'acf.icon') ? 'background:url(' + getImageUrl(get(item, 'acf.icon'), 'c_fit,w_64,h_64') + ') right bottom no-repeat' : ''}>
-                  {#if get(item, 'acf.bild')}
-                    <a href={getLink(get(item, 'link'))} use:link>
-                      <div class="bc_fullcardimage"
-                      style={get(item, 'acf.bild') ? 'background:url(' + getImageUrl(get(item, 'acf.bild'), 'c_fit,w_400,h_200') + ') center center no-repeat; background-size: cover;' : ''}>
-                        
-                      </div>
-                    </a>
-                  {/if}
-                  <a href={getLink(get(item, 'link'))} use:link>
-                    <h4>{item.title.rendered}</h4>
-                  </a>
-                </div>
-              </div>
-            </div>
-          {/each}
-        {/await}
-      </div>
-    </div>
-    <!--
-  A K T U E L L E S  u n d   V E R A N S T A L T U N G E N
-  -->
-  {#await getNews(15) then news}
-  {#if news.length > 0}
-    <div class="container" id="bc_home_teaser_1">
-      <div class="row">
-        <div class="col s12">
-          <h2 class="left-align">
-            {@html get(data, 'pagedata.acf.titel_aktuelles', '&nbsp')}
-          </h2>
-          <h3 class="left-align">
-            {@html get(data, 'pagedata.acf.untertitel_aktuelles', '&nbsp')}
-          </h3>
-          <div class="bc_minihdiv sfz_gruen" />
-        </div>
-      </div>
-      <div class="row">
-        
-          {#each news as item}
-            <div class="col s12 m6 l4">
-              <div
-                class="card-panel {get(item, 'acf.farbe', '')} bc_samesize news">
-                <div
-                  style={get(item, 'acf.icon') ? 'background:url(' + getImageUrl(get(item, 'acf.icon'), 'c_fit,w_64,h_64') + ') right bottom no-repeat' : ''}>
-                  {#if get(item, 'acf.bild')}
-                    <a href={getLink(get(item, 'link'))} use:link>
-                      <div class="bc_fullcardimage"
-                      style={get(item, 'acf.bild') ? 'background:url(' + getImageUrl(get(item, 'acf.bild'), 'c_fit,w_400,h_200') + ') center center no-repeat; background-size: cover;' : ''}>
-                        
-                      </div>
-                    </a>
-                  {/if}
-                  <a href={getLink(get(item, 'link'))} use:link>
-                    <h4>{item.title.rendered}</h4>
-                  </a>
-                </div>
-              </div>
-            </div>
-          {/each}
-       
-      </div>
-    </div>
-    {/if}
-     {/await}
-    <!--
-  Z I T AT
-  -->
-    <div
-      id="bc_zitat"
-      style="background:url({get(data, 'pagedata.acf.motto_hintergrundbild') ? getImageUrl(get(data, 'pagedata.acf.motto_hintergrundbild'), 'c_fit,w_2000,h_500') : ''})
-      center center no-repeat; background-size:cover;">
-      <div class="container">
-        <div class="row">
-          <div class="col s12 m9">
-            {@html get(data, 'pagedata.acf.motto_text', '')}
-          </div>
-          <div class="col s12 m3 valign-wrapper">
-            {#if get(data, 'pagedata.acf.motto_button_link', '')}
-              <a
-                href={getLink(get(data, 'pagedata.acf.motto_button_link', ''))}
-                use:link>
-                <div class="bc_button blue-button valign">
-                  {get(data, 'pagedata.acf.motto_button_beschriftung')}
-                </div>
-              </a>
             {/if}
           </div>
         </div>
@@ -226,6 +114,74 @@
             </div>
           {/each}
         {/if}
+      </div>
+    </div>
+    <!--
+  Z I T AT
+  -->
+    <div
+      id="bc_zitat"
+      style="background:url({get(data, 'pagedata.acf.motto_hintergrundbild') ? getImageUrl(get(data, 'pagedata.acf.motto_hintergrundbild'), 'c_fit,w_2000,h_500') : ''})
+      center center no-repeat; background-size:cover;">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m9">
+            {@html get(data, 'pagedata.acf.motto_text', '')}
+          </div>
+          <div class="col s12 m3 valign-wrapper">
+            {#if get(data, 'pagedata.acf.motto_button_link', '')}
+              <a
+                href={getLink(get(data, 'pagedata.acf.motto_button_link', ''))}
+                use:link>
+                <div class="bc_button blue-button valign">
+                  {get(data, 'pagedata.acf.motto_button_beschriftung')}
+                </div>
+              </a>
+            {/if}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--
+  A K T U E L L E S  u n d   V E R A N S T A L T U N G E N
+  -->
+    <div class="container" id="bc_home_teaser_1">
+      <div class="row">
+        <div class="col s12">
+          <h2 class="left-align">
+            {@html get(data, 'pagedata.acf.titel_aktuelles', '&nbsp')}
+          </h2>
+          <h3 class="left-align">
+            {@html get(data, 'pagedata.acf.untertitel_aktuelles', '&nbsp')}
+          </h3>
+          <div class="bc_minihdiv sfz_gruen" />
+        </div>
+      </div>
+      <div class="row">
+        {#await promiseNews then news}
+          {#each news as item}
+            <div class="col s12 m6 l4">
+              <div
+                class="card-panel {get(item, 'acf.farbe', '')} bc_samesize news">
+                <div
+                  style={get(item, 'acf.icon') ? 'background:url(' + getImageUrl(get(item, 'acf.icon'), 'c_fit,w_64,h_64') + ') right bottom no-repeat' : ''}>
+                  {#if get(item, 'acf.bild')}
+                    <a href={getLink(get(item, 'link'))} use:link>
+                      <div class="bc_fullcardimage">
+                        <img
+                          alt={item.title.rendered}
+                          src={getImageUrl(get(item, 'acf.bild'), 'c_fit,w_500,h_260')} />
+                      </div>
+                    </a>
+                  {/if}
+                  <a href={getLink(get(item, 'link'))} use:link>
+                    <h4>{item.title.rendered}</h4>
+                  </a>
+                </div>
+              </div>
+            </div>
+          {/each}
+        {/await}
       </div>
     </div>
   </div>
