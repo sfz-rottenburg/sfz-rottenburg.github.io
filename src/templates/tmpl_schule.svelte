@@ -79,7 +79,7 @@
           </ul>
         </div>
         {#if get(data, 'pagedata.acf.downloadlink_flyer')}
-          <a
+          <a class="isbutton"
             href={get(data, 'pagedata.acf.downloadlink_flyer')}
             target="_blank">
             <div

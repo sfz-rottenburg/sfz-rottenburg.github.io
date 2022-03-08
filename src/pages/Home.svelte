@@ -105,7 +105,7 @@
                       </div>
                     </a>
                   {/if}
-                  <a href={getLink(get(item, 'link'))} use:link>
+                  <a class="isbutton" href={getLink(get(item, 'link'))} use:link>
                     <h4>{item.title.rendered}</h4>
                   </a>
                 </div>
@@ -174,7 +174,7 @@
           </div>
           <div class="col s12 m3 valign-wrapper">
             {#if get(data, 'pagedata.acf.motto_button_link', '')}
-              <a
+              <a class="isbutton"
                 href={getLink(get(data, 'pagedata.acf.motto_button_link', ''))}
                 use:link>
                 <div class="bc_button blue-button valign">
