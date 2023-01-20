@@ -11,7 +11,7 @@
         `http://cms.sfz-rottenburg.de/wp-json/wp/v2/posts?per_page=6`
       );
       request
-        .get(` https://cache.b-coding.io/${base64URL}`)
+        .get(` https://cache.sfz-rottenburg.de/${base64URL}`)
         .then((response) => {
           rs(response.body);
         })

@@ -8,7 +8,7 @@
         `http://cms.sfz-rottenburg.de/wp-json/wp-api-menus/v2/menu-locations/${menu}`
       );
       request
-        .get(` https://cache.b-coding.io/${base64URL}`)
+        .get(` https://cache.sfz-rottenburg.de/${base64URL}`)
         .then((response) => {
           rs(response.body);
         })
