@@ -11,7 +11,7 @@
   const getPage = async (targetAttr, slug='',posttype='pages') =>
     new Promise((rs, rj) => {
       const base64URL = btoa(
-        `http://cms.sfz-rottenburg.de/wp-json/wp/v2/${posttype}?slug=${slug}`
+        `https://cms.sfz-rottenburg.de/wp-json/wp/v2/${posttype}?slug=${slug}`
       );
       request
         .get(`https://cache.sfz-rottenburg.de/${base64URL}`)

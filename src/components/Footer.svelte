@@ -5,7 +5,7 @@
   const getMenu = async (menu) =>
     new Promise((rs, rj) => {
       const base64URL = btoa(
-        `http://cms.sfz-rottenburg.de/wp-json/wp-api-menus/v2/menu-locations/${menu}`
+        `https://cms.sfz-rottenburg.de/wp-json/wp-api-menus/v2/menu-locations/${menu}`
       );
       request
         .get(` https://cache.sfz-rottenburg.de/${base64URL}`)
